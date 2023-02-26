@@ -11,6 +11,7 @@ import 'reset-css/reset.css'
 import 'normalize.css/normalize.css'
 import '../fonts.css'
 import { useEffect } from 'react'
+import { IntelProvider } from '../context/IntelContext'
 
 ReactGA.initialize('G-B4GVQFN1MH', {
   testMode: process?.env?.NODE_ENV !== 'production'
@@ -52,13 +53,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={mergeTheme(DEFAULT_THEME, THEME)}>
-      <DynamicWrapper>
-        <SApp>
-          <GlobalStyle />
-          <LocalGlobalStyle />
-          <Component {...pageProps} />
-        </SApp>
-      </DynamicWrapper>
+      <IntelProvider>
+        <DynamicWrapper>
+          <SApp>
+            <GlobalStyle />
+            <LocalGlobalStyle />
+            <Component {...pageProps} />
+          </SApp>
+        </DynamicWrapper>
+      </IntelProvider>
     </ThemeProvider>
   )
 }
