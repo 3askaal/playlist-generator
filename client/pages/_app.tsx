@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const { accessToken } = useSpotifyApi(code?.toString())
 
   useEffect(() => {
-    if (accessToken) {
+    if (accessToken || code) {
       router.push('/playlist/new');
     }
   }, [accessToken, code])
